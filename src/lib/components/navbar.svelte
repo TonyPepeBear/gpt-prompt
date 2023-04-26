@@ -1,7 +1,6 @@
 <script>
-    import 'virtual:uno.css'
 </script>
 
-<div class="w-full h-10 bg-green">
-    
+<div class="u-w-full u-h-10 u-bg-green">
+    ff
 </div>
