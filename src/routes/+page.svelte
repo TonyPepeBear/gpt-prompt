@@ -62,14 +62,6 @@
 			</div>
 		</div>
 	{/each}
-	<div class="u-h-3" />
-	<a rel="license" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">
-		<img
-			alt="創用 CC 授權條款"
-			style="border-width:0"
-			src="https://i.creativecommons.org/l/by/4.0/88x31.png"
-		/>
-	</a>
 	<div class="u-h-20" />
 </div>
 
