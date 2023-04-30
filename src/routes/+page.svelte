@@ -1,10 +1,10 @@
 <script lang="ts">
-	import rawData from '../data/prompts.json';
-	import IconPen from '$lib/components/svg/IconPen.svelte';
+	import promptRawData from '../data/prompts.json';
+	import homeIntro from '../data/home_intro.json';
 	import IconClipboard from '$lib/components/svg/IconClipboard.svelte';
-	var data = rawData;
-	function copyToClipboard(prompt: string, firstPrompt: string) {
-		navigator.clipboard.writeText(prompt + '\n\n我的第一個指令是：' + firstPrompt);
+	var data = promptRawData;
+	function copyToClipboard(i: number) {
+		navigator.clipboard.writeText(data[i].prompt + '\n\n我的第一個指令是：' + data[i].firstPrompt);
 	}
 </script>
 
@@ -15,29 +15,40 @@
 <div class="u-mx-1 md:u-mx-10 lg:u-mx-20 xl:u-mx80">
 	<h1 class="u-text-8">ChatGPT 咒文指南</h1>
 	<p class="u-text-4.5">
-		ChatGPT是一個基於GPT-3.5架構訓練的大型語言模型，可以回答各種問題和提供各種建議。但是，有些使用者可能會發現和
-		ChatGPT 對話時有些困難或不順暢。ChatGPT
-		咒文指南的目的就是要解決這些問題，提供使用者各種建議和技巧，讓和ChatGPT的對話變得更加容易和流暢。
+		{homeIntro.intro}
+	</p>
+	<h2>鳴謝</h2>
+	<p class="u-text-4.5">
+		大部分內容參考自 <a href="https://prompts.chat/" target="_blank">Awesome ChatGPT Prompts</a>
+	</p>
+	<h2>使用說明</h2>
+	<p class="u-text-4.5">
+		{homeIntro.how_to_use}
 	</p>
 	<h2 class="u-text-7">咒文書</h2>
-	{#each data as { act, prompt, firstPrompt }}
-		<div class="u-flex u-items-center u-gap-1">
-			<h3 class="u-text-6 u-my-0">{act}</h3>
-			<button
-				class="u-my-0 u-h-5.5 u-border-0 u-bg-transparent"
-				on:click={() => {
-					copyToClipboard(prompt, firstPrompt);
-				}}
-			>
-				<IconClipboard />
-			</button>
-		</div>
-		<p class="u-my-3 u-text-4.5">{prompt}</p>
-		<div class="u-flex">
-			<p class="u-my-3 u-text-4.5">我的第一個指令是：</p>
-			<p class="u-my-3 u-text-4.5" contenteditable="true" bind:innerText={firstPrompt} />
-			<div class="u-my-2 u-h-5">
-				<IconPen />
+	{#each data as { act, prompt, firstPrompt }, i}
+		<div class="u-p-2 u-mb-4 u-border-solid u-border-1 u-border-black u-rounded-xl">
+			<div class="u-flex u-items-center u-gap-1">
+				<h3 class="u-text-6 u-my-0">{act}</h3>
+				<button
+					class="u-my-0 u-h-5.5 u-border-0 u-bg-transparent u-cursor-pointer"
+					on:click={() => {
+						copyToClipboard(i);
+					}}
+				>
+					<IconClipboard />
+				</button>
+			</div>
+			<p class="u-my-3 u-text-4.5">{prompt}</p>
+			<div class="u-flex u-flex-col">
+				<div class="u-flex">
+					<p class="u-my-3 u-text-4.5">我的第一個指令是：✍⬇️</p>
+				</div>
+				<p
+					class="u-my-3 u-text-4.5 u-text-gray-600 u-underline"
+					contenteditable="true"
+					bind:innerText={firstPrompt}
+				/>
 			</div>
 		</div>
 	{/each}
