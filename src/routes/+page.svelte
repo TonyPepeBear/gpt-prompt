@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Icon from '@iconify/svelte';
+	import githubIcon from '@iconify/icons-mdi/github';
 	import promptRawData from '../data/prompts.json';
 	import homeIntro from '../data/home_intro.json';
 	import IconClipboard from '$lib/components/svg/IconClipboard.svelte';
@@ -25,6 +27,14 @@
 	<p class="u-text-4.5">
 		{homeIntro.how_to_use}
 	</p>
+	<div>
+		<p class="u-text-4.5">
+			{homeIntro.how_to_use_2}
+		</p>
+		<a class="u-text-black" href="https://github.com/TonyPepeBear/gpt-prompt" target="_blank">
+			<Icon icon={githubIcon} width="64" height="64" />
+		</a>
+	</div>
 	<h2 class="u-text-7">咒文書</h2>
 	{#each data as { act, prompt, firstPrompt }, i}
 		<div class="u-p-2 u-mb-4 u-border-solid u-border-1 u-border-black u-rounded-xl">
@@ -52,6 +62,14 @@
 			</div>
 		</div>
 	{/each}
+	<div class="u-h-3" />
+	<a rel="license" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">
+		<img
+			alt="創用 CC 授權條款"
+			style="border-width:0"
+			src="https://i.creativecommons.org/l/by/4.0/88x31.png"
+		/>
+	</a>
 	<div class="u-h-20" />
 </div>
 
